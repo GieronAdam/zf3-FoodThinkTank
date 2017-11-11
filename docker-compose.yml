@@ -1,0 +1,23 @@
+version: '3'
+services:
+  ftt:
+    build: .
+    container_name: ftt_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www
+    links:
+        - ftt_mysql
+    restart: always
+  ftt_mysql:
+    image: mysql:5.7
+    container_name: ftt_mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=agieron_ftt
+      - MYSQL_USER=agieron_ftt
+      - MYSQL_PASSWORD=agieron_ftt
+    restart: always
