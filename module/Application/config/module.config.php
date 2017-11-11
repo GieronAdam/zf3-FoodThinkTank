@@ -47,7 +47,17 @@ return [
                         'action'     => 'about',
                     ],
                 ],
-            ],            
+            ],
+            'projects' => [
+                'type' => Literal::class,
+                'options' => [
+                    'route'    => '/projects',
+                    'defaults' => [
+                        'controller' => Controller\IndexController::class,
+                        'action'     => 'projects',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -70,7 +80,7 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index', 'about'], 'allow' => '*'],
+                ['actions' => ['index', 'about', 'projects'], 'allow' => '*'],
                 // Allow authorized users to visit "settings" action
                 ['actions' => ['settings'], 'allow' => '@']
             ],

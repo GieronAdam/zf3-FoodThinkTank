@@ -40,7 +40,13 @@ class IndexController extends AbstractActionController
     public function aboutAction() 
     {              
         $appName = 'Food Think Tank';
-        $appDescription = '';
+        $appDescription = 'Food Think Tank Foundation is the bunch of the individualists
+                            and experts in multiple fields which have focused on the process of common learning
+                            and progression. Each of us is different and brings to unity something extra. 
+                            We are as free as free is our mind and as limited as the joint discussion may limit us. 
+                            We are forging the enormous number of relative to food-thinking ideas 
+                            into concerted effect from which we are able to get in a responsible way. 
+                            We have met here, in Wrocław so here we eat and act!';
         
         // Return variables to view script with the help of
         // ViewObject variable container
@@ -77,6 +83,14 @@ class IndexController extends AbstractActionController
         return new ViewModel([
             'user' => $user
         ]);
+    }
+
+    public function projectsAction()
+    {
+        $view = new ViewModel([
+            'article' => 'Projects Article'
+        ]);
+        return $view;
     }
 }
 

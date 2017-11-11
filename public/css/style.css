@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
 body {
     padding-bottom: 40px;
 }
-
+* {
+    font-family: 'Poppins', sans-serif;
+}
 .zf-green {
     color: #68b604;
 }
@@ -35,7 +38,7 @@ div.container a.navbar-brand > img {
 }
 
 div.app-caption {
-    padding: 25px 0px;    
+    padding: 25px 0px;
     font-size:3.0em;
     font-weight: bold;
     color:#6aacaf
@@ -47,12 +50,31 @@ form ul {
   margin: 0px 5px;
 }
 
-form ul li {    
-  color: red;        
+form ul li {
+  color: red;
 }
 
 .alert ul {
   list-style-type: none;
   padding: 0px;
   margin: 0px 5px;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover{
+    background-color: #fff;
+}
+
+.navbar, .navbar-default, .breadcrumb {
+    background-color: #fff;
+}
+
+.logo h2{
+    font-size: 62px;
+    font-weight: 600;
+}
+
+.breadcrumb > li >a  {
+    color: #000;
 }

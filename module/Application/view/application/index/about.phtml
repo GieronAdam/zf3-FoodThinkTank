@@ -9,12 +9,9 @@ $this->pageBreadcrumbs()->setItems([
             ]);
 ?>
 
-<h1>About</h1>
-
-<p>
-    Application name: <?= $this->escapeHtml($appName) ?>
-</p>
-
-<p>
-    Application description: <?= $this->escapeHtml($appDescription) ?>
-</p>
+<div class="col-md-8 col-md-offset-2">
+    <h3><?= $this->escapeHtml($appName) ?></h3>
+    <p>
+        <?= $this->escapeHtml($appDescription) ?>
+    </p>
+</div>

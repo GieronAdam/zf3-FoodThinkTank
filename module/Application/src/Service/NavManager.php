@@ -50,9 +50,16 @@ class NavManager
         ];
         
         $items[] = [
+            'id' => 'projects',
+            'label' => 'Projects',
+            'link'  => $url('projects')
+        ];
+
+        $items[] = [
             'id' => 'about',
             'label' => 'About',
-            'link'  => $url('about')
+            'link'  => $url('about'),
+            'float'
         ];
         
         // Display "Login" menu item for not authorized user only. On the other hand,
@@ -97,7 +104,8 @@ class NavManager
                 $items[] = [
                     'id' => 'admin',
                     'label' => 'Admin',
-                    'dropdown' => $adminDropdownItems
+                    'dropdown' => $adminDropdownItems,
+                    'float' => 'right'
                 ];
             }
             
