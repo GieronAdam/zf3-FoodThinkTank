@@ -8,6 +8,5 @@ nbproject
 .project
 .settings
 vendor/
-config/development.config.php
 phpunit.xml
 public/img/captcha

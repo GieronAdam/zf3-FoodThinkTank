@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?= $this->headTitle('Role Demo')->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle('Food Think Tank')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -12,13 +12,15 @@
 
         <!-- Le styles -->
         <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
-                        ->prependStylesheet($this->basePath('css/style.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
-                        ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+                ->prependStylesheet($this->basePath('css/style.css'))
+                ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
+                ->prependStylesheet($this->basePath('css/app.css'))
         ?>
 
         <!-- Scripts -->
         <?= $this->headScript()
+            ->prependFile($this->basePath('js/custom.js'))
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-2.2.4.min.js'))
         ?>
@@ -28,7 +30,7 @@
             <div class="row">
                 <!-- Page header -->
                 <div class="col-md-4">
-                    <div class="app-caption">Role Demo</div>
+                    <div class="logo"><h2>Food Think Tank</h2></div>
                 </div>                
             </div>
             <div class="row">
@@ -60,7 +62,7 @@
             </div>
             <hr>
             <footer>
-                <p>&copy; 2005 - <?= date('Y') ?> by Your Company. All rights reserved.</p>
+                <p>&copy; <?= date('Y') ?> Adam Gieroń. All rights reserved.</p>
             </footer>
         </div>
         <?= $this->inlineScript() ?>

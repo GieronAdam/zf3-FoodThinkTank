@@ -5,6 +5,7 @@ use User\Entity\User;
 use User\Entity\Role;
 use Zend\Crypt\Password\Bcrypt;
 use Zend\Math\Rand;
+use Doctrine\ORM\EntityManager;
 
 /**
  * This service is responsible for adding/editing users
@@ -133,10 +134,10 @@ class UserManager
             $this->roleManager->createDefaultRolesIfNotExist();
             
             $user = new User();
-            $user->setEmail('admin@example.com');
+            $user->setEmail('adam.gieron@icloud.com');
             $user->setFullName('Admin');
             $bcrypt = new Bcrypt();
-            $passwordHash = $bcrypt->create('Secur1ty');        
+            $passwordHash = $bcrypt->create('Secur1tyPass');
             $user->setPassword($passwordHash);
             $user->setStatus(User::STATUS_ACTIVE);
             $user->setDateCreated(date('Y-m-d H:i:s'));
