@@ -1,4 +1,12 @@
-.button-block, .btn-primary {
+.button-block, .btn-primary  {
     background-color: #fff;
+    color: #000;
     border: 1px solid silver;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:link {
+    background-color: #fff;
+    color: #000;
 }

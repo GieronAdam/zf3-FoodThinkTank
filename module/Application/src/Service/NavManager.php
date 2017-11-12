@@ -1,12 +1,21 @@
 <?php
 namespace Application\Service;
-
+use Application\Service\PostManager;
+use Doctrine\ORM\EntityRepository;
+use Application\Entity\Post;
+use Application\Entity\Tag;
 /**
  * This service is responsible for determining which items should be in the main menu.
  * The items may be different depending on whether the user is authenticated or not.
  */
+
 class NavManager
 {
+    /**
+     * Entity manager.
+     * @var Doctrine\ORM\EntityManager;
+     */
+    private $entityManager;
     /**
      * Auth service.
      * @var Zend\Authentication\Authentication
@@ -28,8 +37,9 @@ class NavManager
     /**
      * Constructs the service.
      */
-    public function __construct($authService, $urlHelper, $rbacManager) 
+    public function __construct($authService, $urlHelper, $rbacManager,$entityManager)
     {
+        $this->entityManager = $entityManager;
         $this->authService = $authService;
         $this->urlHelper = $urlHelper;
         $this->rbacManager = $rbacManager;
@@ -59,9 +69,38 @@ class NavManager
             'id' => 'about',
             'label' => 'About',
             'link'  => $url('about'),
-            'float'
         ];
-        
+
+//TODO:: ===============================================================
+//
+//
+//        $postsByTag = $this->entityManager->getRepository(Post::class)
+//            ->findPostsByTag('projects')->getResult();
+//        echo '<pre>';
+//        foreach ($postsByTag[0]->getTags() as $tag){
+//
+//            $items[] = [
+//                'id' => $tag->getName(),
+//                'label' => $tag->getName(),
+//                'link'  => $url($tag->getName()),
+//            ];
+//        }
+//        echo '</pre>';
+//va
+//        foreach ($tags as $tag) {
+//
+//            $postsByTag = $this->entityManager->getRepository(Post::class)
+//                ->findPostsByTag($tag->getName())->getResult();
+//
+//            $postCount = count($postsByTag);
+//            if ($postCount > 0) {
+//                $tagCloud[$tag->getName()] = $postCount;
+//                var_dump($tag->getName());
+//            }
+//        }
+
+
+//TODO:: ===============================================================
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.
         if (!$this->authService->hasIdentity()) {
@@ -83,7 +122,15 @@ class NavManager
                             'link' => $url('users')
                         ];
             }
-            
+
+            if ($this->rbacManager->isGranted(null, 'post.manage')) {
+                $adminDropdownItems[] = [
+                    'id' => 'posts',
+                    'label' => 'Manage posts',
+                    'link' => $url('postsmanage'),
+                ];
+            }
+
             if ($this->rbacManager->isGranted(null, 'permission.manage')) {
                 $adminDropdownItems[] = [
                             'id' => 'permissions',

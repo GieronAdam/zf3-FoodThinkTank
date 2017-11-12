@@ -10,6 +10,9 @@ namespace Application;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
+use Zend\Router\Http\Regex;
+use  \Route\StaticRoute;
+use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
     'router' => [
@@ -48,13 +51,45 @@ return [
                     ],
                 ],
             ],
+            'posts' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/posts[/:action[/:id]]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\PostController::class,
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
+            'postsmanage' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/postsmanage',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\PostController::class,
+                        'action'        => 'admin',
+                    ],
+                ],
+            ],
             'projects' => [
-                'type' => Literal::class,
+                'type'    => Literal::class,
                 'options' => [
                     'route'    => '/projects',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
                     'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'projects',
+                        'controller'    => Controller\IndexController::class,
+                        'action'        => 'projects',
                     ],
                 ],
             ],
@@ -63,6 +98,7 @@ return [
     'controllers' => [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
+            Controller\PostController::class => Controller\Factory\PostControllerFactory::class,
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -80,9 +116,15 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index', 'about', 'projects'], 'allow' => '*'],
+                ['actions' => ['index', 'about', 'projects','view'], 'allow' => '*'],
                 // Allow authorized users to visit "settings" action
-                ['actions' => ['settings'], 'allow' => '@']
+                ['actions' => ['settings','admin'], 'allow' => '@']
+            ],
+            Controller\PostController::class => [
+                // Allow anyone to visit "index" and "about" actions
+                ['actions' => ['index','view'], 'allow' => '*'],
+                // Allow authorized users to visit below actions
+                ['actions' => ['edit','delete','add','admin','view','index'], 'allow' => '@']
             ],
         ]
     ],
@@ -94,6 +136,7 @@ return [
         'factories' => [
             Service\NavManager::class => Service\Factory\NavManagerFactory::class,
             Service\RbacAssertionManager::class => Service\Factory\RbacAssertionManagerFactory::class,
+            Service\PostManager::class => Service\Factory\PostManagerFactory::class,
         ],
     ],
     'view_helpers' => [
@@ -129,5 +172,19 @@ return [
             'message_close_string'     => '</li></ul></div>',
             'message_separator_string' => '</li><li>'
         ]
-    ],   
+    ],
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
+                'class' => AnnotationDriver::class,
+                'cache' => 'array',
+                'paths' => [__DIR__ . '/../src/Entity']
+            ],
+            'orm_default' => [
+                'drivers' => [
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+                ]
+            ]
+        ]
+    ],
 ];

@@ -21,7 +21,8 @@ class NavManagerFactory
         $viewHelperManager = $container->get('ViewHelperManager');
         $urlHelper = $viewHelperManager->get('url');
         $rbacManager = $container->get(RbacManager::class);
-        
-        return new NavManager($authService, $urlHelper, $rbacManager);
+        $entityManager = $container->get('doctrine.entitymanager.orm_default');
+
+        return new NavManager($authService, $urlHelper, $rbacManager, $entityManager);
     }
 }
