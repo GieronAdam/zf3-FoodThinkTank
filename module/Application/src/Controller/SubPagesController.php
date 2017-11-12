@@ -36,9 +36,16 @@ class SubPagesController extends AbstractActionController
 
     public function projectsAction()
     {
+        $query = $this->entityManager->getRepository(Post::class)
+            ->findPostsByTag('projects')->getResult();
+        $items = array();
+        foreach($query as $item )
+        {
+            array_push($items,$item);
 
+        }
 
-        return new ViewModel([]);
+        return new ViewModel(['data'=>$items]);
     }
 
     public function peoplesAction()
