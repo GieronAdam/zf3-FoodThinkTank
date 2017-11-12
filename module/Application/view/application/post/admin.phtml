@@ -8,7 +8,25 @@ $this->pageBreadcrumbs()->setItems([
             ]);
 ?>
 
-<h1>Manage Posts</h1>
+
+<h3>Tag list for menu sections</h3>
+<table class="table table-striped ">
+    <tr>
+        <th>Projects</th>
+        <th>People</th>
+        <th>Additional actions</th>
+        <th>Lab</th>
+        <th>Initiatives</th>
+    </tr>
+    <tr>
+        <td>projects</td>
+        <td>peoples</td>
+        <td>addactions</td>
+        <td>lab</td>
+        <td>initiatives</td>
+    </tr>
+</table>
+
 
 <p>
 <a class="btn btn-default" href="
@@ -25,6 +43,7 @@ $this->pageBreadcrumbs()->setItems([
         <th>Date Created</th>
         <th>Status</th>        
         <th>Actions</th>
+       <th>Tags</th>
 
    </tr>
     
@@ -35,7 +54,7 @@ $this->pageBreadcrumbs()->setItems([
         <td>
             <a href="<?= $this->url('posts', ['action'=>'view', 'id'=>$post->getId()]); ?>">
                 <?= $this->escapeHtml($post->getTitle()); ?>
-            </a> 
+            </a>
         </td>
         <td><?= $this->escapeHtml($post->getDateCreated()); ?></td>        
         <td><?= $this->escapeHtml($postManager->getPostStatusAsString($post)); ?></td>
@@ -49,7 +68,10 @@ $this->pageBreadcrumbs()->setItems([
                     ['action'=>'delete', 'id'=>$post->getId()]); ?>">
                 <span class="glyphicon glyphicon-remove"></span> Delete
             </a>
-        </td>    
+        </td>
+        <td class="admin-grid-tag">
+            <?= $tags->convertTagsToString($post); ?>
+        </td>
     </tr>
         
     <?php endforeach; ?>   

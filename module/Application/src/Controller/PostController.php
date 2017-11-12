@@ -264,7 +264,8 @@ class PostController extends AbstractActionController
         // Render the view template
         return new ViewModel([
             'posts' => $posts,
-            'postManager' => $this->postManager
+            'postManager' => $this->postManager,
+            'tags' => $this->postManager,
         ]);        
     }
 }
