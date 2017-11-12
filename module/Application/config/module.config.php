@@ -54,16 +54,16 @@ return [
                     ],
                 ],
             ],
-            'about' => [
-                'type' => Literal::class,
-                'options' => [
-                    'route'    => '/about',
-                    'defaults' => [
-                        'controller' => Controller\IndexController::class,
-                        'action'     => 'about',
-                    ],
-                ],
-            ],
+//            'about' => [
+//                'type' => Literal::class,
+//                'options' => [
+//                    'route'    => '/about',
+//                    'defaults' => [
+//                        'controller' => Controller\IndexController::class,
+//                        'action'     => 'about',
+//                    ],
+//                ],
+//            ],
             'posts' => [
                 'type'    => Segment::class,
                 'options' => [
