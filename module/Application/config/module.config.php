@@ -233,7 +233,7 @@ return [
                 // Allow anyone to visit "index" and "about" actions
                 ['actions' => ['images','upload','file','index'], 'allow' => '@'],
                 // Allow authorized users to visit below actions
-                ['actions' => ['images','upload','file','index'], 'allow' => '*'],
+                ['actions' => ['images','index'], 'allow' => '*'],
             ],
         ]
     ],

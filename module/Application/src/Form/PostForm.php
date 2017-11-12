@@ -2,9 +2,11 @@
 
 namespace Application\Form;
 
+use Zend\Config\Config;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 use Application\Entity\Post;
+
 
 /**
  * This form is used to collect post data.
@@ -96,7 +98,6 @@ class PostForm extends Form
         ]);
 
 
-
     }
     
     /**
@@ -131,7 +132,7 @@ class PostForm extends Form
                 'name'     => 'content',
                 'required' => true,
                 'filters'  => [                    
-                    ['name' => 'StripTags'],
+//                    ['name' => 'StripTags'],
                 ],                
                 'validators' => [
                     [

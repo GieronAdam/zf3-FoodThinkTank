@@ -40,9 +40,9 @@ $form->prepare();
     Published: <?= $this->escapeHtml(date('jS \of F Y', strtotime($post->getDateCreated()))); ?> 
     | Tags: <?= $this->escapeHtml($postManager->convertTagsToString($post)); ?>   
 </p>
-
+<img src="data/upload/test.png" alt="aaaa">
 <p>    
-    <?= $this->escapeHtml($post->getContent()); ?>
+    <?= ($post->getContent()); ?>
 </p>
 
 <h3><?= $this->escapeHtml($postManager->getCommentCountStr($post)); ?></h3>

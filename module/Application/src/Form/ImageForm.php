@@ -93,7 +93,7 @@ class ImageForm extends Form
                 [
                     'name' => 'FileRenameUpload',
                     'options' => [
-                        'target'=>'./data/upload',
+                        'target'=>'./public/upload',
                         'useUploadName'=>true,
                         'useUploadExtension'=>true,
                         'overwrite'=>true,
