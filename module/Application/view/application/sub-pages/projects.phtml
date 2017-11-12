@@ -1,1 +1,10 @@
-test
+<?php
+$this->headTitle('Projects');
+
+$this->mainMenu()->setActiveItemId('projects');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('home'),
+    'Projects'=>$this->url('projects'),
+]);
+?>

@@ -1,1 +1,10 @@
-initiativesinitiativesinitiatives
+<?php
+$this->headTitle('Initiatives');
+
+$this->mainMenu()->setActiveItemId('initiatives');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('home'),
+    'Initiatives'=>$this->url('initiatives'),
+]);
+?>

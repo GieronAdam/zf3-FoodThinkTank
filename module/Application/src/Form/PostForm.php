@@ -21,7 +21,7 @@ class PostForm extends Form
      
         // Set POST method for this form
         $this->setAttribute('method', 'post');
-                
+
         $this->addElements();
         $this->addInputFilter();  
         
@@ -34,7 +34,7 @@ class PostForm extends Form
     {
                 
         // Add "title" field
-        $this->add([        
+        $this->add([
             'type'  => 'text',
             'name' => 'title',
             'attributes' => [
@@ -50,7 +50,7 @@ class PostForm extends Form
             'type'  => 'textarea',
             'name' => 'content',
             'attributes' => [                
-                'id' => 'content'
+                'id' => 'post-content',
             ],
             'options' => [
                 'label' => 'Content',
@@ -94,6 +94,9 @@ class PostForm extends Form
                 'id' => 'submitbutton',
             ],
         ]);
+
+
+
     }
     
     /**
@@ -159,6 +162,7 @@ class PostForm extends Form
                     ],
                 ],
             ]);
+
     }
 }
 

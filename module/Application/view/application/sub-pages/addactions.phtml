@@ -1,5 +1,10 @@
-$items[] = [
-'id' => 'about',
-'label' => 'About',
-'link'  => $url('about'),
-];
+<?php
+$this->headTitle('About');
+
+$this->mainMenu()->setActiveItemId('about');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('home'),
+    'Additional actions'=>$this->url('addactions'),
+]);
+?>

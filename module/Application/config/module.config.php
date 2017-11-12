@@ -11,7 +11,7 @@ use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\Router\Http\Regex;
-use  \Route\StaticRoute;
+use Application\Route\StaticRoute;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
 
 return [
@@ -24,6 +24,19 @@ return [
                     'defaults' => [
                         'controller' => Controller\IndexController::class,
                         'action'     => 'index',
+                    ],
+                ],
+            ],
+            'images' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/images[/:action]',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\ImageController::class,
+                        'action'        => 'index',
                     ],
                 ],
             ],
@@ -184,6 +197,7 @@ return [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\PostController::class => Controller\Factory\PostControllerFactory::class,
             Controller\SubPagesController::class => Controller\Factory\SubPagesControllerFactory::class,
+            Controller\ImageController::class => Controller\Factory\ImageControllerFactory::class,
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -212,7 +226,14 @@ return [
                 ['actions' => ['edit','delete','add','admin','view','index'], 'allow' => '@']
             ],
             Controller\SubPagesController::class => [
+                // Allow authorized users to visit below actions
                 ['actions' => ['projects','peoples','addactions','lab','initiatives','contact',], 'allow' => '*']
+            ],
+            Controller\ImageController::class => [
+                // Allow anyone to visit "index" and "about" actions
+                ['actions' => ['images','upload','file','index'], 'allow' => '@'],
+                // Allow authorized users to visit below actions
+                ['actions' => ['images','upload','file','index'], 'allow' => '*'],
             ],
         ]
     ],
@@ -225,6 +246,7 @@ return [
             Service\NavManager::class => Service\Factory\NavManagerFactory::class,
             Service\RbacAssertionManager::class => Service\Factory\RbacAssertionManagerFactory::class,
             Service\PostManager::class => Service\Factory\PostManagerFactory::class,
+            Service\ImageManager::class => InvokableFactory::class,
         ],
     ],
     'view_helpers' => [

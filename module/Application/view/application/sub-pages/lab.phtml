@@ -1,1 +1,10 @@
-lablablablablablab
+<?php
+$this->headTitle('Lab');
+
+$this->mainMenu()->setActiveItemId('lab');
+
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('home'),
+    'Lab'=>$this->url('lab'),
+]);
+?>

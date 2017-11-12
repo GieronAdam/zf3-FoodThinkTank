@@ -1,9 +1,10 @@
-
 <?php
+$this->headTitle('Peoples');
 
+$this->mainMenu()->setActiveItemId('peoples');
 
-foreach($data as $post)
-
-   echo '<h2>'.$post->getTitle().'</h2><br>'.$post->getContent();
-
+$this->pageBreadcrumbs()->setItems([
+    'Home'=>$this->url('home'),
+    'Peoples'=>$this->url('peoples'),
+]);
 ?>

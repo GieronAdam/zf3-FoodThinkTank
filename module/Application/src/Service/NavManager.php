@@ -89,11 +89,11 @@ class NavManager
             'link'  => $url('initiatives'),
         ];
 
-        $items[] = [
-            'id' => 'blog',
-            'label' => 'Blog',
-            'link'  => $url('allposts'),
-        ];
+//        $items[] = [
+//            'id' => 'blog',
+//            'label' => 'Blog',
+//            'link'  => $url('allposts'),
+//        ];
 
         $items[] = [
             'id' => 'contact',
@@ -135,6 +135,14 @@ class NavManager
                     'id' => 'posts',
                     'label' => 'Manage posts',
                     'link' => $url('postsmanage'),
+                ];
+            }
+
+            if ($this->rbacManager->isGranted(null, 'image.manage')) {
+                $adminDropdownItems[] = [
+                    'id' => 'images',
+                    'label' => 'Manage images',
+                    'link' => $url('images'),
                 ];
             }
 
