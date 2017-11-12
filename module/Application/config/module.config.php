@@ -88,8 +88,92 @@ return [
                         'id' => '[0-9]*'
                     ],
                     'defaults' => [
-                        'controller'    => Controller\IndexController::class,
+                        'controller'    => Controller\SubPagesController::class,
                         'action'        => 'projects',
+                    ],
+                ],
+            ],
+            'peoples' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/peoples',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\SubPagesController::class,
+                        'action'        => 'peoples',
+                    ],
+                ],
+            ],
+            'addactions' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/addactions',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\SubPagesController::class,
+                        'action'        => 'addactions',
+                    ],
+                ],
+            ],
+            'lab' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/lab',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\SubPagesController::class,
+                        'action'        => 'lab',
+                    ],
+                ],
+            ],
+            'initiatives' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/initiatives',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\SubPagesController::class,
+                        'action'        => 'initiatives',
+                    ],
+                ],
+            ],
+            'allposts' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/allposts',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\PostController::class,
+                        'action'        => 'index',
+                    ],
+                ],
+            ],
+            'contact' => [
+                'type'    => Literal::class,
+                'options' => [
+                    'route'    => '/contact',
+                    'constraints' => [
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id' => '[0-9]*'
+                    ],
+                    'defaults' => [
+                        'controller'    => Controller\SubPagesController::class,
+                        'action'        => 'contact',
                     ],
                 ],
             ],
@@ -99,6 +183,7 @@ return [
         'factories' => [
             Controller\IndexController::class => Controller\Factory\IndexControllerFactory::class,
             Controller\PostController::class => Controller\Factory\PostControllerFactory::class,
+            Controller\SubPagesController::class => Controller\Factory\SubPagesControllerFactory::class,
         ],
     ],
     // The 'access_filter' key is used by the User module to restrict or permit
@@ -125,6 +210,9 @@ return [
                 ['actions' => ['index','view'], 'allow' => '*'],
                 // Allow authorized users to visit below actions
                 ['actions' => ['edit','delete','add','admin','view','index'], 'allow' => '@']
+            ],
+            Controller\SubPagesController::class => [
+                ['actions' => ['projects','peoples','addactions','lab','initiatives','contact',], 'allow' => '*']
             ],
         ]
     ],

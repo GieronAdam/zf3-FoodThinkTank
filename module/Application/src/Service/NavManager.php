@@ -66,41 +66,48 @@ class NavManager
         ];
 
         $items[] = [
+            'id' => 'peoples',
+            'label' => 'Peoples',
+            'link'  => $url('peoples')
+        ];
+
+        $items[] = [
+            'id' => 'addactions',
+            'label' => 'Additional actions',
+            'link'  => $url('addactions'),
+        ];
+
+        $items[] = [
+            'id' => 'lab',
+            'label' => 'Lab',
+            'link'  => $url('lab'),
+        ];
+
+        $items[] = [
+            'id' => 'initiatives',
+            'label' => 'Initiatives',
+            'link'  => $url('initiatives'),
+        ];
+
+        $items[] = [
+            'id' => 'blog',
+            'label' => 'Blog',
+            'link'  => $url('allposts'),
+        ];
+
+        $items[] = [
+            'id' => 'contact',
+            'label' => 'Contact',
+            'link'  => $url('contact'),
+        ];
+
+
+        $items[] = [
             'id' => 'about',
             'label' => 'About',
             'link'  => $url('about'),
         ];
 
-//TODO:: ===============================================================
-//
-//
-//        $postsByTag = $this->entityManager->getRepository(Post::class)
-//            ->findPostsByTag('projects')->getResult();
-//        echo '<pre>';
-//        foreach ($postsByTag[0]->getTags() as $tag){
-//
-//            $items[] = [
-//                'id' => $tag->getName(),
-//                'label' => $tag->getName(),
-//                'link'  => $url($tag->getName()),
-//            ];
-//        }
-//        echo '</pre>';
-//va
-//        foreach ($tags as $tag) {
-//
-//            $postsByTag = $this->entityManager->getRepository(Post::class)
-//                ->findPostsByTag($tag->getName())->getResult();
-//
-//            $postCount = count($postsByTag);
-//            if ($postCount > 0) {
-//                $tagCloud[$tag->getName()] = $postCount;
-//                var_dump($tag->getName());
-//            }
-//        }
-
-
-//TODO:: ===============================================================
         // Display "Login" menu item for not authorized user only. On the other hand,
         // display "Admin" and "Logout" menu items only for authorized users.
         if (!$this->authService->hasIdentity()) {
@@ -158,7 +165,7 @@ class NavManager
             
             $items[] = [
                 'id' => 'logout',
-                'label' => $this->authService->getIdentity(),
+                'label' => 'account',
                 'float' => 'right',
                 'dropdown' => [
                     [

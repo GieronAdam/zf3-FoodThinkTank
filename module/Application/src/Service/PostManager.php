@@ -146,7 +146,6 @@ class PostManager
             return $commentCount . ' comments';
     }
 
-
     /**
      * This method adds a new comment to post.
      */

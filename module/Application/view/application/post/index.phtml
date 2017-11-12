@@ -4,11 +4,9 @@ $this->headTitle('Posts');
 $this->mainMenu()->setActiveItemId('home');
 
 $this->pageBreadcrumbs()->setItems([
-    'Home'=>$this->url('home')
+    'Blog'=>$this->url('allposts')
 ]);
 ?>
-
-<h1>Posts</h1>
 
 <div class="row">
 
@@ -41,10 +39,10 @@ $this->pageBreadcrumbs()->setItems([
 
         <?php endforeach; ?>
 
-<!--        --><?//= $this->paginationControl($posts,
-//            'Sliding',
-//            'application/partial/paginator',
-//            array('route' => 'projects')); ?>
+        <?= $this->paginationControl($posts,
+            'Sliding',
+            'application/partial/paginator',
+            array('route' => 'projects')); ?>
 
     </div>
 
