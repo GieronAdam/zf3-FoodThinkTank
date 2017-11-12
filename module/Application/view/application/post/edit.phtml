@@ -16,7 +16,7 @@ $form->get('title')->setAttributes([
 $form->get('content')->setAttributes([
     'class'=>'form-control', 
     'placeholder'=>'Type content here',
-    'rows'=>6
+    'rows'=>12
     ]);
 $form->get('tags')->setAttributes([
     'class'=>'form-control', 
@@ -38,7 +38,7 @@ $form->prepare();
 </p>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-8">
         <?= $this->form()->openTag($form); ?>
         
         <div class="form-group">

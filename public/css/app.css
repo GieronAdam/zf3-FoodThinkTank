@@ -10,3 +10,10 @@
     background-color: #fff;
     color: #000;
 }
+.mce-notification-inner,
+.mce-notification-warning {
+    display: none !important;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+}
