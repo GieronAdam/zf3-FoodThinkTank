@@ -56,16 +56,43 @@ class SubPagesController extends AbstractActionController
     }
     public function addactionsAction()
     {
-        return new ViewModel([]);
+        $query = $this->entityManager->getRepository(Post::class)
+            ->findPostsByTag('addactions')->getResult();
+        $items = array();
+        foreach($query as $item )
+        {
+            array_push($items,$item);
+
+        }
+
+        return new ViewModel(['data'=>$items]);
     }
 
     public function labAction()
     {
-        return new ViewModel([]);
+        $query = $this->entityManager->getRepository(Post::class)
+            ->findPostsByTag('lab')->getResult();
+        $items = array();
+        foreach($query as $item )
+        {
+            array_push($items,$item);
+
+        }
+
+        return new ViewModel(['data'=>$items]);
     }
     public function initiativesAction()
     {
-        return new ViewModel([]);
+        $query = $this->entityManager->getRepository(Post::class)
+            ->findPostsByTag('initiatives')->getResult();
+        $items = array();
+        foreach($query as $item )
+        {
+            array_push($items,$item);
+
+        }
+
+        return new ViewModel(['data'=>$items]);
     }
     public function contactAction()
     {

@@ -7,4 +7,12 @@ $this->pageBreadcrumbs()->setItems([
     'Home'=>$this->url('home'),
     'Peoples'=>$this->url('peoples'),
 ]);
+
+if($data){
+    foreach($data as $post){
+        echo '<h3>'.$post->getTitle().'</h3><br>'.$post->getContent().'<br>';
+    }
+}
 ?>
+
+
