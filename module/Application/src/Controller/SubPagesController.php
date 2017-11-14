@@ -101,11 +101,6 @@ class SubPagesController extends AbstractActionController
 
         return new ViewModel(['data'=>$items]);
     }
-    public function contactAction()
-    {
-        return new ViewModel([]);
-    }
-
 
 //    /**
 //     * This action displays the "View Post" page allowing to see the post title

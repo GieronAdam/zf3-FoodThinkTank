@@ -98,7 +98,7 @@ class NavManager
         $items[] = [
             'id' => 'contact',
             'label' => 'Contact',
-            'link'  => $url('contact'),
+            'link'  => $url('contactus'),
         ];
 
 

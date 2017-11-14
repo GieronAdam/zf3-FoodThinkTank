@@ -176,17 +176,17 @@ return [
                     ],
                 ],
             ],
-            'contact' => [
+            'contactus' => [
                 'type'    => Literal::class,
                 'options' => [
-                    'route'    => '/contact',
+                    'route'    => '/contactus',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]*'
                     ],
                     'defaults' => [
-                        'controller'    => Controller\SubPagesController::class,
-                        'action'        => 'contact',
+                        'controller'    => Controller\IndexController::class,
+                        'action'        => 'contactUs',
                     ],
                 ],
             ],
@@ -215,7 +215,7 @@ return [
         'controllers' => [
             Controller\IndexController::class => [
                 // Allow anyone to visit "index" and "about" actions
-                ['actions' => ['index', 'about', 'projects','view'], 'allow' => '*'],
+                ['actions' => ['index', 'about', 'projects','view','contactUs','sendError','thankYou'], 'allow' => '*'],
                 // Allow authorized users to visit "settings" action
                 ['actions' => ['settings','admin'], 'allow' => '@']
             ],
@@ -247,6 +247,7 @@ return [
             Service\RbacAssertionManager::class => Service\Factory\RbacAssertionManagerFactory::class,
             Service\PostManager::class => Service\Factory\PostManagerFactory::class,
             Service\ImageManager::class => InvokableFactory::class,
+            Service\MailSender::class => InvokableFactory::class,
         ],
     ],
     'view_helpers' => [

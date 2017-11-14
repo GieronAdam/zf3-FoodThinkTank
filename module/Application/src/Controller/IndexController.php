@@ -4,6 +4,8 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use User\Entity\User;
+use Application\Form\ContactForm;
+use Application\Service\MailSender;
 
 
 /**
@@ -17,13 +19,18 @@ class IndexController extends AbstractActionController
      * @var Doctrine\ORM\EntityManager
      */
     private $entityManager;
-
+    /**
+     * Mail sender.
+     * @var Application\Service\MailSender
+     */
+    private $mailSender;
     /**
      * Constructor. Its purpose is to inject dependencies into the controller.
      */
-    public function __construct($entityManager)
+    public function __construct($entityManager, $mailSender)
     {
        $this->entityManager = $entityManager;
+        $this->mailSender = $mailSender;
     }
 
     /**
@@ -48,28 +55,6 @@ class IndexController extends AbstractActionController
             'appDescription' => $appDescription
         ]);
     }
-
-    /**
-     * This is the "about" action. It is used to display the "About" page.
-     */
-//    public function aboutAction()
-//    {
-//        $appName = 'Food Think Tank';
-//        $appDescription = 'Food Think Tank Foundation is the bunch of the individualists
-//                            and experts in multiple fields which have focused on the process of common learning
-//                            and progression. Each of us is different and brings to unity something extra.
-//                            We are as free as free is our mind and as limited as the joint discussion may limit us.
-//                            We are forging the enormous number of relative to food-thinking ideas
-//                            into concerted effect from which we are able to get in a responsible way.
-//                            We have met here, in Wrocław so here we eat and act!';
-//
-//        // Return variables to view script with the help of
-//        // ViewObject variable container
-//        return new ViewModel([
-//            'appName' => $appName,
-//            'appDescription' => $appDescription
-//        ]);
-//    }
 
     /**
      * The "settings" action displays the info about currently logged in user.
@@ -106,6 +91,69 @@ class IndexController extends AbstractActionController
             'article' => 'Projects Article'
         ]);
         return $view;
+    }
+
+    /**
+     * This action displays the Contact Us page.
+     */
+    public function contactUsAction()
+    {
+        // Create Contact Us form
+        $form = new ContactForm();
+
+        // Check if user has submitted the form
+        if($this->getRequest()->isPost()) {
+
+            // Fill in the form with POST data
+            $data = $this->params()->fromPost();
+
+            $form->setData($data);
+
+            // Validate form
+            if($form->isValid()) {
+
+                // Get filtered and validated data
+                $data = $form->getData();
+                $email = $data['email'];
+                $subject = $data['subject'];
+                $body = $data['body'];
+
+                // Send E-mail
+                if(!$this->mailSender->sendMail('adam.gieron@foodthinktank.pl', $email,
+                    $subject, $body)) {
+                    // In case of error, redirect to "Error Sending Email" page
+                    return $this->redirect()->toRoute('application',
+                        ['action'=>'sendError']);
+                }
+
+                // Redirect to "Thank You" page
+                return $this->redirect()->toRoute('application',
+                    ['action'=>'thankYou']);
+            }
+        }
+
+        // Pass form variable to view
+        return new ViewModel([
+            'form' => $form
+        ]);
+    }
+
+    /**
+     * This action displays the Thank You page. The user is redirected to this
+     * page on successful mail delivery.
+     */
+    public function thankYouAction()
+    {
+        return new ViewModel();
+    }
+
+    /**
+     * This action displays the Send Error page. The user is redirected to this
+     * page on mail delivery error.
+     */
+    public function sendErrorAction()
+    {
+        return new ViewModel();
     }
 }
 
