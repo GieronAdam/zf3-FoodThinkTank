@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+
         <?= $this->headTitle('Food Think Tank')->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?= $this->headMeta()
@@ -18,10 +18,13 @@
             ->prependStylesheet($this->basePath('css/bootstrap.min.css'))
         ?>
         <!-- Scripts -->
+
         <?= $this->headScript()
             ->prependFile($this->basePath('js/custom.js'))
+            ->prependFile('https://cloud.tinymce.com/stable/tinymce.min.js')
             ->prependFile($this->basePath('js/bootstrap.min.js'))
             ->prependFile($this->basePath('js/jquery-2.2.4.min.js'))
+
         ?>
 
     </head>

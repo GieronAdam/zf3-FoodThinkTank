@@ -21,3 +21,8 @@
 .admin-grid-tag {
     width: 200px;
 }
+
+blockquote {
+    padding: 5px;
+    border-left: 2px solid gray;
+}
