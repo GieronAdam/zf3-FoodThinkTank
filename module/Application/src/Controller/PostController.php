@@ -96,7 +96,7 @@ class PostController extends AbstractActionController
                 $this->postManager->addNewPost($data);
                 
                 // Redirect the user to "index" page.
-                return $this->redirect()->toRoute('application');
+                return $this->redirect()->toRoute('posts', ['action'=>'admin']);
             }
         }
         
