@@ -27,37 +27,23 @@
 $('.mce-notification-inner').remove();
 $('.mce-notification-warning').css('display','none');
 
-var template =
-                '' +
-                '' +
-                '' +
-                '' +
-                '' +
-                '' +
-                '' +
-                '' +
-                '' +
-                '' + '';
-
-
-
 tinymce.init({
     selector: "#post-content",
     height: 500,
     plugins: [
         "advlist autolink autosave link image lists charmap print preview hr anchor pagebreak",
         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-        "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern"
+        "table contextmenu directionality emoticons template textcolor paste fullpage textcolor colorpicker textpattern codesample importcss layer"
     ],
 
     toolbar1: "newdocument fullpage | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | styleselect formatselect fontselect fontsizeselect",
     toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor",
-    toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | visualchars visualblocks nonbreaking template pagebreak restoredraft",
+    toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | visualchars visualblocks nonbreaking  pagebreak restoredraft template | codesample importcss",
     content_css: [
         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
         '//www.tinymce.com/css/codepen.min.css'],
 
-    menubar: false,
+    menubar: true,
     toolbar_items_size: 'small',
 
     style_formats: [{
@@ -92,12 +78,26 @@ tinymce.init({
     }],
 
     templates: [{
-        title: 'Test template 1',
-        content: 'Test 1'
+        title: 'Bootstrap template 1',
+        content:
+        '<div class="container">' +
+            '<div class="row">' +
+            '<div class="col-md-6">Dwie kolumny</div>'+
+            '<div class="col-md-6">Dwie kolumny</div>'+
+            '</div>' +
+        '</div>'
     }, {
         title: 'Test template 2',
-        content: 'Test 2'
+        content:
+        '<div class="container">' +
+        '<div class="row">' +
+        '<div class="col-md-4">trzy kolumny</div>'+
+        '<div class="col-md-4">trzy kolumny</div>'+
+        '<div class="col-md-4">trzy kolumny</div>'+
+        '</div>' +
+        '</div>'
     }],
+
 
     init_instance_callback: function () {
         window.setTimeout(function() {
