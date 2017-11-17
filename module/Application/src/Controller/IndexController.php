@@ -119,7 +119,7 @@ class IndexController extends AbstractActionController
                 $body = $data['body'];
 
                 // Send E-mail
-                if(!$this->mailSender->sendMail('adam.gieron@foodthinktank.pl', $email,
+                if(!$this->mailSender->sendMail($email,'adam.gieron@foodthinktank.pl',
                     $subject, $body)) {
                     // In case of error, redirect to "Error Sending Email" page
                     return $this->redirect()->toRoute('application',
