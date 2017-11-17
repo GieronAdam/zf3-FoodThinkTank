@@ -26,3 +26,15 @@ blockquote {
     padding: 5px;
     border-left: 2px solid gray;
 }
+
+/*Shame css*/
+
+
+#tinymce > div {
+    border: 1px solid red;
+}
+
+.google-maps {
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
