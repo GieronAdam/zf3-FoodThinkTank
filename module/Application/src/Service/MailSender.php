@@ -19,6 +19,7 @@ class MailSender
         try {
             // Create E-mail message
             $mail = new Message();
+            $mail->setTo($recipient);
             $mail->setBody($text);
             $mail->setFrom($sender);
             $mail->addTo($recipient);
