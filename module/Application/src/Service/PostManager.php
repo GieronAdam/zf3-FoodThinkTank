@@ -222,6 +222,37 @@ class PostManager
         
         return $normalizedTagCloud;
     }
+
+    /**
+     * get images from directory.
+     */
+    public function getImages($postId, $tag )
+    {
+        $dir = getcwd() . '/public/img/'.$tag.'/'.$postId;
+        $result = array();
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        $cdir = scandir($dir);
+
+        foreach ($cdir as $key => $value)
+        {
+            if (!in_array($value,array(".","..")))
+            {
+                if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
+                {
+                    $result[$value] = dirToArray($dir . DIRECTORY_SEPARATOR . $value);
+                }
+                else
+                {
+                    $result[] = $value;
+                }
+            }
+        }
+
+        return $result;
+
+    }
 }
 
 

@@ -47,7 +47,7 @@ class Post
      * @ORM\JoinColumn(name="id", referencedColumnName="post_id")
      */
     protected $comments;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="\Application\Entity\Tag", inversedBy="posts")
      * @ORM\JoinTable(name="post_tag",
@@ -56,7 +56,8 @@ class Post
      *      )
      */
     protected $tags;
-    
+
+    protected $images;
     /**
      * Constructor.
      */
@@ -180,8 +181,16 @@ class Post
     public function getTags() 
     {
         return $this->tags;
-    }      
-    
+    }
+
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+    public function getImages()
+    {
+        return $this->images;
+    }
     /**
      * Adds a new tag to this post.
      * @param $tag

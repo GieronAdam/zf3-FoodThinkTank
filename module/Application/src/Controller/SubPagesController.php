@@ -11,6 +11,8 @@ use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 use Zend\Paginator\Paginator;
 
 
+
+
 class SubPagesController extends AbstractActionController
 {
     /**
@@ -39,12 +41,12 @@ class SubPagesController extends AbstractActionController
         $query = $this->entityManager->getRepository(Post::class)
             ->findPostsByTag('projects')->getResult();
         $items = array();
+        $_images = array();
         foreach($query as $item )
         {
+            $item->setImages($this->postManager->getImages($item->getId(),'projects'));
             array_push($items,$item);
-
         }
-
         return new ViewModel(['data'=>$items]);
     }
 
@@ -55,6 +57,7 @@ class SubPagesController extends AbstractActionController
         $items = array();
         foreach($query as $item )
         {
+            $item->setImages($this->postManager->getImages($item->getId(),'peoples'));
             array_push($items,$item);
 
         }
@@ -68,6 +71,7 @@ class SubPagesController extends AbstractActionController
         $items = array();
         foreach($query as $item )
         {
+            $item->setImages($this->postManager->getImages($item->getId(),'addactions'));
             array_push($items,$item);
 
         }
@@ -82,6 +86,7 @@ class SubPagesController extends AbstractActionController
         $items = array();
         foreach($query as $item )
         {
+            $item->setImages($this->postManager->getImages($item->getId(),'lab'));
             array_push($items,$item);
 
         }
@@ -95,6 +100,7 @@ class SubPagesController extends AbstractActionController
         $items = array();
         foreach($query as $item )
         {
+            $item->setImages($this->postManager->getImages($item->getId(),'initiatives'));
             array_push($items,$item);
 
         }

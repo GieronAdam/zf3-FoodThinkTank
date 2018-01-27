@@ -61,7 +61,6 @@ class PostController extends AbstractActionController
 
         // Get popular tags.
         $tagCloud = $this->postManager->getTagCloud();
-
         // Render the view template.
         return new ViewModel([
             'posts' => $paginator,
@@ -153,7 +152,7 @@ class PostController extends AbstractActionController
                 return $this->redirect()->toRoute('posts', ['action'=>'view', 'id'=>$postId]);
             }
         }
-        
+
         // Render the view template.
         return new ViewModel([
             'post' => $post,
