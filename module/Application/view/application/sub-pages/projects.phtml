@@ -18,14 +18,17 @@ if($data){
         <!--        Post content-->
 
         <!--        Images-->
-        <?php foreach ($post->getImages() as $image) {?>
-            <img src="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ;?>" alt="asdqwe123">
-        <?php } ?>
+
+    <div class="css-gallery">
+            <?php foreach ($post->getImages() as $image)  {?>
+            <div class="img-w">
+                <img src="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ?>"" alt="" />
+            </div>
+            <?php } ?>
         <!--        Images-->
+    </div>
 <?php
     }
 }
 ?>
-
-
 
