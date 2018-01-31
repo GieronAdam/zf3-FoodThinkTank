@@ -3,14 +3,32 @@ $this->headTitle('Lab');
 
 $this->mainMenu()->setActiveItemId('lab');
 
+
 $this->pageBreadcrumbs()->setItems([
     'Home'=>$this->url('home'),
     'Lab'=>$this->url('lab'),
 ]);
+$publicDir = $this->basePath();
 
 if($data){
-    foreach($data as $post){
-        echo '<h3>'.$post->getTitle().'</h3><br>'.$post->getContent().'<br>';
+    foreach($data as $post){ ?>
+        <!--        Post content-->
+        <div class="h3"><?php echo $post->getTitle()?></div>
+        <div class="content"><?php echo $post->getContent(); ?></div>
+        <!--        Post content-->
+
+        <!--        Images-->
+
+        <div class="css-gallery">
+            <?php foreach ($post->getImages() as $image)  {?>
+                <div class="img-w">
+                    <img src="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ?>"" alt="" />
+                </div>
+            <?php } ?>
+            <!--        Images-->
+        </div>
+        <?php
     }
 }
 ?>
+
