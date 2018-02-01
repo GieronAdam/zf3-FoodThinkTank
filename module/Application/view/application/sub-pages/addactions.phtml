@@ -19,16 +19,22 @@ if($data){
 
         <!--        Images-->
 
-        <div class="css-gallery">
-            <?php foreach ($post->getImages() as $image)  {?>
-                <div class="img-w">
-                    <img src="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ?>"" alt="" />
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="row">
+                    <?php foreach ($post->getImages() as $image)  {?>
+                        <a href="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ?>" data-toggle="lightbox" data-gallery="gallery" class="col-sm-4">
+                            <img src="<?php echo $publicDir.'/img'.$this->url().'/'.$post->getId().'/'.$image ?>" class="img-fluid" >
+                        </a>
+
+
+                    <?php } ?>
+                    <!--        Images-->
                 </div>
-            <?php } ?>
-            <!--        Images-->
+            </div>
         </div>
+
         <?php
     }
 }
 ?>
-
