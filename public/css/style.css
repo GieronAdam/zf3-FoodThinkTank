@@ -78,7 +78,19 @@ form ul li {
 .breadcrumb > li >a  {
     color: #000;
 }
-
-.img-fluid{
-    width:200px;
+.thumbnail {
+    margin: 2px;
+    max-width: 150px;
+    background-color: #f9f9f9;
 }
+.thumbnail > .img-fluid{
+    width:120px;
+    height: 100px;
+    text-align: center;
+
+}
+
+.justify-content-center, .gallery {
+    text-align: center;
+}
+
